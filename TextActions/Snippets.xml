@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<action-recipes>
+	
+	<snippet id="com.macrabbit.TextActions.Sugar.zone" category="tools.actions.text.Snippets.Sugar">
+		<title>Zone</title>
+		<text>
+<![CDATA[<zone name="${1:zone.name}">
+    ${2:<expression>${3:regex}</expression>}
+    ${4:<starts-with>
+        <expression>${5:regex}</expression>
+    </starts-with>
+    <ends-with>
+        <expression>${6:regex}</expression>
+    </ends-with>}
+    ${7:<subzones>
+        $0
+    </subzones>}
+</zone>]]>
+        </text>
+		<syntax-context>Sugar, Sugar *</syntax-context>
+		<text-trigger>zone</text-trigger>
+	</snippet>
+    
+</action-recipes>

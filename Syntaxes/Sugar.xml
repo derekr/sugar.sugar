@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This is your root zone -->
+<syntax name="text.xml.Sugar">
+	<zones>
+	    <include collection="regex.tags" />
+	    <include collection="selector.tags" />
+		<include syntax="text.xml" />
+	</zones>
+	
+	
+	
+	<library>
+	    <collection name="regex.tags">
+	        <!-- <expression> -->
+	        <zone name="expression.tag.regex">
+	            <starts-with>
+	                <expression>(&lt;)(expression|complete-match)\></expression>
+	                <capture number="0" name="tag.open.xml" />
+	            </starts-with>
+	            <ends-with>
+	                <expression>(&lt;)\/\2\></expression>
+	                <capture number="0" name="tag.close.xml" />
+	            </ends-with>
+	            <subzones>
+	                <include syntax="expression.regex" />
+	            </subzones>
+	        </zone>
+
+	    </collection>
+	    
+	    <collection name="selector.tags">
+	        <!-- anything that contains a selector class -->
+	        <zone name="selector.tag">
+	            <starts-with>
+	                <expression>(&lt;)((start|end-)?selector|syntax-context)\></expression>
+	                <capture number="0" name="tag.open.xml" />
+	            </starts-with>
+	            <ends-with>
+	                <expression>(&lt;)\/\2\></expression>
+	                <capture number="0" name="tag.close.xml" />
+	            </ends-with>
+	            <subzones>
+	                <include collection="syntax-zone.selectors" />
+	            </subzones>
+	        </zone>
+
+	    </collection>
+	    
+	    <collection name="syntax-zone.selectors">
+	        <zone name="syntax-zone.selector">
+	            <expression>[a-zA-Z-_]*</expression>
+	            <capture number="0" name="zone.name" />
+	        </zone>
+	        
+	        <zone name="operator.pattern.selector">
+	            <expression>[\>~\+\*]</expression>
+	        </zone>
+	        
+	        <zone name="filter.target.selector">
+	            <starts-with>
+	                <expression>:(has-child|capture|not)(\()</expression>
+	                <capture number="2" name="delimiter.open.parenthesis" />
+	            </starts-with>
+	            <ends-with>
+	                <expression>\)</expression>
+	                <capture number="0" name="delimiter.close.parenthesis" />
+	            </ends-with>
+	            <subzones>
+	                <include collection="syntax-zone.selectors" />
+	            </subzones>
+	        </zone>
+	        
+	        <zone name="delimiter.comma.grouping">
+	            <expression>,</expression>
+	        </zone>
+	        
+	        <zone name="delimiter.period">
+	            <expression>.</expression>
+	        </zone>
+	    </collection>
+	</library>
+</syntax>
