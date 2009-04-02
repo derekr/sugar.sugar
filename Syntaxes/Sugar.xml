@@ -75,7 +75,7 @@
 	        </zone>
 	        
 	        <zone name="delimiter.period">
-	            <expression>.</expression>
+	            <expression>\.</expression>
 	        </zone>
 	    </collection>
 	</library>

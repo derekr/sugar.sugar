@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <action-recipes>
 	
-	<snippet id="com.macrabbit.TextActions.Sugar.zone" category="tools.actions.text.Snippets.Sugar">
+	<snippet id="com.gridlee.TextActions.Sugar.Zone" category="tools.actions.text.Snippets.Sugar">
 		<title>Zone</title>
 		<text>
 <![CDATA[<zone name="${1:zone.name}">
@@ -20,5 +20,36 @@
 		<syntax-context>Sugar, Sugar *</syntax-context>
 		<text-trigger>zone</text-trigger>
 	</snippet>
+    
+    <snippet id="com.gridlee.TextActions.Sugar.Snippet" category="tools.actions.text.Snippets.Sugar">
+		<title>Snippet</title>
+		<text>
+<![CDATA[<snippet id="$1" category="$2">
+    <title>$3</title>
+    <text>
+${4:snippet text}
+    </text>
+    <syntax-context>${5:selector}</syntax-context>
+    <text-trigger>$0</text-trigger>
+</snippet>]]>
+        </text>
+		<syntax-context>Sugar, Sugar *</syntax-context>
+		<text-trigger>snippet</text-trigger>
+	</snippet>
+    
+    <snippet id="com.gridlee.TextActions.Sugar.Behavior" category="tools.actions.text.Snippets.Sugar">
+    <title>Behavior</title>
+    <text>
+<![CDATA[<behavior>
+    <append-${1:static|dynamic}>
+        ${2:<matched-suffix>${3:regex}</matched-suffix>}
+        ${4:<transform-into>${0:snippet}</transform-into>}
+    </append-${1:static|dynamic}>
+</behavior>]]>
+    </text>
+    <syntax-context>Sugar, Sugar *</syntax-context>
+    <text-trigger>behavior</text-trigger>
+</snippet>
+        
     
 </action-recipes>
